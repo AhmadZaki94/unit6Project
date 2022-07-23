@@ -1,0 +1,27 @@
+#container {
+    border: 1px solid black;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#logo{
+    border: 1px solid red;
+    margin-left: 150px;
+    margin-top: 0px;
+    width: 150px;
+    font-size: larger;
+}
+
+#logo > h1{
+    margin-top: 10px;
+}
+
+#leftContent{
+    display: flex;
+    border: 1px solid red;
+    margin-right: 120px;
+    /* word-spacing: 25px; */
+    gap: 25px;
+}
