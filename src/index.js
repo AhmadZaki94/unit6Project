@@ -6,7 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
-import { store } from './components/Redux/store';
+import { store } from './Redux/store';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://prodapi.herokuapp.com';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

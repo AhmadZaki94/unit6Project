@@ -1,5 +1,5 @@
 import { Box, Grid, Stack } from '@chakra-ui/react';
-import React,{ useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { fetchData } from "../Redux/products/action";
 import { ProductSample } from '../components/ProductSample';
@@ -9,7 +9,7 @@ import { FilterComponent } from '../components/FilterComponent';
 export const Products = () => {
 
     const products = useSelector((store) => store.ecommerceData.products);
-    // console.log("Products: ", products);
+    console.log("Products: ", products);
 
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
@@ -20,11 +20,12 @@ export const Products = () => {
             let params = {
                 type: searchParams.getAll('type')
             }
+            console.log("params:", params)
             dispatch(fetchData(params));
         }
     },[dispatch,products?.length, searchParams]);
 
-    console.log("after Useffect: ", products);
+    // console.log("after Useffect: ", products);
 
     return (
         <Box marginTop='25px'>

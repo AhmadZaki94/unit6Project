@@ -2,12 +2,12 @@ import { Box, CheckboxGroup, VStack, Checkbox } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchData } from "./Redux/products/action";
+import { fetchData } from "../Redux/products/action";
 
 export const FilterComponent = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
-    // console.log("SearchParams:", searchParams);
+    console.log("SearchParams:", searchParams);
 
     const dispatch = useDispatch();
 

@@ -3,7 +3,9 @@ import * as types from './actionTypes';
 const initialState = {
     products: [],
     loading: false,
-    error: ''
+    error: '',
+    currentProduct: {},
+    cart: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,11 +31,48 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: payload,
                 loading: false
-            }
+            };
+        case types.GET_SINGLE_PRODUCT_REQUEST:
+            return {
+                ...state,
+                error: '',
+                loading: true
+            };
+        case types.GET_SINGLE_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                currentProduct: payload,
+                loading: false
+            };
+        case types.GET_SINGLE_PRODUCT_FAILURE:
+            return {
+                ...state,
+                error: payload,
+                loading: false
+            };
+        case types.ADD_PRODUCT_CART_REQUEST:
+            return {
+                ...state,
+                error: '',
+                loading: true
+            };
+        case types.ADD_PRODUCT_CART_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                cart: [...state.cart, payload],
+                loading: false
+            };
+        case types.ADD_PRODUCT_CART_FAILURE:
+            return {
+                ...state,
+                error: '',
+                loading: false
+            };
         default: 
             return state;
     }
-
 };
 
 export default reducer;
