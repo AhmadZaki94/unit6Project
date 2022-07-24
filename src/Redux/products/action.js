@@ -106,8 +106,67 @@ const addProductCart = (product) => (dispatch) => {
     .catch((e) => dispatch(addProductCartFailure(e.data)));
 };
 
+const fetchCartRequest = (payload) => {
+    return {
+        type: types.FETCH_CART_REQUEST,
+        payload
+    };
+};
+
+const fetchCartSuccess = (payload) => {
+    return {
+        type: types.FETCH_CART_SUCCESS,
+        payload
+    };
+};
+
+const fetchCartFailure = (payload) => {
+    return {
+        type: types.ADD_PRODUCT_CART_FAILURE,
+        payload
+    };
+};
+
+const fetchCart = (payload) => (dispatch) => {
+    dispatch(fetchCartRequest());
+    axios.get('/cart')
+    .then((r) => dispatch(fetchCartSuccess(r.data)))
+    .catch((e) => dispatch(fetchCartFailure(e.data)));
+};
+
+const deleteProductCartRequest = (payload) => {
+    return {
+        type: types.REMOVE_PRODUCT_CART_REQUEST,
+        payload
+    };
+};
+
+const deleteProductCartSuccess = (payload) => {
+    return {
+        type: types.REMOVE_PRODUCT_CART_SUCCESS,
+        payload
+    };
+};
+
+const deleteProductCartFailure = (payload) => {
+    return {
+        type: types.REMOVE_PRODUCT_CART_FAILURE,
+        payload
+    };
+};
+
+const deleteProductCart = (id) => dispatch => {
+    
+    dispatch(deleteProductCartRequest());
+    axios.delete(`/cart/${id}`)
+    .then((r) => {
+        dispatch(deleteProductCartSuccess(r.data))
+    })
+    .then(() => dispatch(fetchCart()))
+    .catch((e) => dispatch(deleteProductCartFailure(e.data)));
+};
 
 
 
-export { fetchData, getSingleProduct, addProductCart };
+export { fetchData, getSingleProduct, addProductCart, fetchCart, deleteProductCart };
 

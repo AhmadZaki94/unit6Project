@@ -1,7 +1,7 @@
 import {
     Box,
     Flex,
-    Text,
+    // Text,
     IconButton,
     Link,
     Icon,
@@ -10,6 +10,7 @@ import {
     useColorModeValue,
     useBreakpointValue,
     useDisclosure,
+    Heading,
   } from '@chakra-ui/react';
   import {
     HamburgerIcon,
@@ -19,8 +20,8 @@ import {
   } from '@chakra-ui/icons';
 import { BsCart3 } from 'react-icons/bs';
 import { Link as RouterLink } from 'react-router-dom';
-// import { Profile } from './Profile';
-// import { CartCounter } from './CartCounter';
+import { Profile } from './Profile';
+import { CartCounter } from './CartCounter';
 export const Navbar = () => {
 
     const { isOpen, onToggle } = useDisclosure();
@@ -51,12 +52,12 @@ export const Navbar = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
+          <Heading
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}>
-            Logo
-          </Text>
+            All Mart
+          </Heading>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             {/* <DesktopNav /> */}
@@ -70,14 +71,14 @@ export const Navbar = () => {
           spacing={6}>
           <Link as={RouterLink} to='/cart'>
             <Box position='relative' padding='0 0.5rem 0 0'>
-              {/* <CartCounter/> */}
+              <CartCounter/>
               <Icon as={BsCart3} boxSize='2rem' />
             </Box>
           </Link> 
-          <Link as={RouterLink} to='/product'>
+          <Link as={RouterLink} to='/products'>
               <Box>Products</Box>
           </Link>
-            {/* <Profile/> */}
+            <Profile/>
         </Stack>
       </Flex>
 
