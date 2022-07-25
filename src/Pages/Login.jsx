@@ -40,14 +40,18 @@ export const Login = () => {
         e.preventDefault();
         console.log("UserEmail", userEmail, 'userPassword', userPassword);
         dispatch(signIn({ email: userEmail, password: userPassword}));
+        // navigate('/');
     }
 
     useEffect(() => {
-      if(location?.state.pathname && authStatus)
+      if(location?.state?.pathname && authStatus)
       {
-        navigate(location.state?.pathname, { replace: true });
+        navigate(location?.state?.pathname, { replace: true });
       }
-    },[location?.state , navigate, authStatus]);
+      // else if(!authStatus){
+      //   navigate('/signup');
+      // }
+    },[location.state, navigate, authStatus]);
 
     console.log(location);
 

@@ -15,7 +15,9 @@ export const Profile = () => {
                     <Link to={'/login'}>
                         <MenuItem>Login</MenuItem>
                     </Link>
-                    <MenuItem>Logout</MenuItem>
+                    <Link to={'/signup'}>
+                        <MenuItem>Sign Up</MenuItem>
+                    </Link>
                 </MenuList>
             </Menu>
         </Flex>

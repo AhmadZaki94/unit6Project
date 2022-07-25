@@ -21,7 +21,7 @@ export const Cart = () => {
         {cart.length && cart.map((e) => {
             return (
                  <CartItem 
-                    key={e.id} 
+                    key={e._id} 
                     name={e.name} 
                     id={e._id}
                     price={e.price} 
@@ -38,7 +38,7 @@ export const Cart = () => {
 
 function CartItem({ name, image, price,description, removeProduct, id}) {
 return (
-    <Box border={'1px solid blue'} m='auto' boxShadow="rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"  width={'fit-content'} margin='auto' marginBottom='2rem'>
+    <Box key={id} border={'1px solid blue'} m='auto' boxShadow="rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"  width={'fit-content'} margin='auto' marginBottom='2rem'>
         <Stack direction={{base: 'column', md: 'row'}} justifyContent='center' alignItems='center'>
             <Box 
                 height={'350px'} 
