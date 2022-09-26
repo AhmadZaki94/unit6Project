@@ -8,6 +8,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
 import { store } from './Redux/store';
 import axios from 'axios';
+import { AuthProvider } from './components/Context/Auth';
 
 axios.defaults.baseURL = 'https://prodapi.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -16,6 +17,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AuthProvider>
     <BrowserRouter>
       <ChakraProvider>
         <Provider store={store}>
@@ -23,6 +25,7 @@ root.render(
         </Provider>
       </ChakraProvider>
     </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 

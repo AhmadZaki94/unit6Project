@@ -1,4 +1,4 @@
-import { Box, Grid, Stack } from '@chakra-ui/react';
+import { Box, Grid, Stack, Heading } from '@chakra-ui/react';
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { fetchData } from "../Redux/products/action";
@@ -30,10 +30,11 @@ export const Products = () => {
     return (
         <Box marginTop='25px'>
             <Stack fontFamily="Trade Gothic W01 Light, Arial,sans-serif" display={{md: 'flex'}} flexDirection={{md: 'row'}} gap={6}>
-                <Box border={'1px solid blue'} width='250px' height='350px' marginTop='7px' marginLeft='25px'>
+                <Box  width='250px' height='350px' marginTop='7px' marginLeft='25px'>
+                    <Heading as='h6' size='md' mb='15px'>Filter By Category</Heading>
                     <FilterComponent/>
                 </Box>
-                <Box w='1250px'  border={'1px solid red'} margin='auto'>
+                <Box w='1250px' margin='auto'>
                     { /* Product Mappin Part*/}
                     <Box>
                         <Grid templateColumns='repeat(3, 1fr)' gap={2}>

@@ -52,12 +52,19 @@ export const Navbar = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Heading
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            All Mart
-          </Heading>
+          <Link as={RouterLink} to='/'>
+            <Heading
+              textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+              fontFamily={'heading'}
+              color={useColorModeValue('gray.800', 'white')}>
+              All Mart
+            </Heading>
+          </Link>
+          <Link as={RouterLink} to='/products'>
+            <Heading color={useColorModeValue('gray.800', 'white')} ml={'25px'}>
+              Products
+            </Heading>
+          </Link>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             {/* <DesktopNav /> */}
@@ -75,9 +82,6 @@ export const Navbar = () => {
               <Icon as={BsCart3} boxSize='2rem' />
             </Box>
           </Link> 
-          <Link as={RouterLink} to='/products'>
-              <Box>Products</Box>
-          </Link>
             <Profile/>
         </Stack>
       </Flex>

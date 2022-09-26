@@ -31,8 +31,7 @@ export const FilterComponent = () => {
     return (
         <Box>
             <CheckboxGroup defaultValue={typesValues} onChange={typeHandler}>
-                        {/* <FormLabel>Filter By: </FormLabel> */}
-                        <VStack width='250px'>
+                        <VStack width='250px' alignItems={'baseline'}>
                             <Checkbox value="Apparel">Apparel</Checkbox>
                             <Checkbox value="Electronics">Electronics</Checkbox>
                             <Checkbox value="Beauty Product">Beauty Products</Checkbox>

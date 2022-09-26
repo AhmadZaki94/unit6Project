@@ -9,65 +9,55 @@ import {
     Link,
     Button,
     Heading,
-    Text,
     useColorModeValue,
   } from '@chakra-ui/react';
+import axios from 'axios';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signIn } from '../Redux/auth/action';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../components/Context/Auth';
   
 export const Login = () => {
-    const dispatch = useDispatch();
+
     const navigate = useNavigate();
-    const location = useLocation();
-    const authStatus = useSelector((store) => store.authReducer.auth)
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const auth = useAuth();
+    const [user] = useState('');
 
-    const handleUserEmailChange = (e) => {
-        // console.log(e.target.value);
-        setUserEmail(e.target.value);
-    };
+   const handleEmail = (e) => {
+      setEmail(e.target.value);
+   }
 
-    const handleUserPassword = (e) => {
-        setUserPassword(e.target.value);
-    };
+   const handlePassword = (e) => {
+      setPassword(e.target.value);
+   }
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        console.log("UserEmail", userEmail, 'userPassword', userPassword);
-        dispatch(signIn({ email: userEmail, password: userPassword}));
-        // navigate('/');
-    }
-
-    useEffect(() => {
-      if(location?.state?.pathname && authStatus)
-      {
-        navigate(location?.state?.pathname, { replace: true });
-      }
-      // else if(!authStatus){
-      //   navigate('/signup');
-      // }
-    },[location.state, navigate, authStatus]);
-
-    console.log(location);
-
+   const handleLogin = (email, password) => {
+      auth.login(!user);
+      axios.post("https://firstauth.herokuapp.com/email",{
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log("response", res.data);
+        alert("Login Successfully");
+        navigate('/cart');
+      })
+      .catch((err) => {
+        navigate('/signup');
+        console.log("Message:", err);
+      });
+   }
 
     return (
       <Flex
-        minH={'100vh'}
+        minH={'50vh'}
         align={'center'}
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
             <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-            <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
-            </Text>
           </Stack>
           <Box
             rounded={'lg'}
@@ -75,14 +65,13 @@ export const Login = () => {
             boxShadow={'lg'}
             p={8}>
             <Stack spacing={4}>
-              <form onSubmit={submitHandler}>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" value={userEmail} onChange={handleUserEmailChange} />
+                <Input type="email" onChange={handleEmail} />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
-                <Input type="password" value={userPassword} onChange={handleUserPassword} />
+                <Input type="password" onChange={handlePassword} />
               </FormControl>
               <Stack spacing={10}>
                 <Stack
@@ -99,11 +88,13 @@ export const Login = () => {
                     bg: 'blue.500',
                   }}
                   type='submit'
+                  onClick={() => {
+                    handleLogin(email, password)
+                  }}
                   >
                   Sign in
                 </Button>
               </Stack>
-            </form>
           </Stack>
         </Box>
       </Stack>
