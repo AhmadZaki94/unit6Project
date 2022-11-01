@@ -83,7 +83,7 @@ export const Login = () => {
                   {/* <Link color={'blue.400'}>Forgot password?</Link> */}
                 </Stack>
                 <Button
-                  bg={'blue.400'}
+                  bg={'#319795'}
                   color={'white'}
                   _hover={{
                     bg: 'blue.500',
