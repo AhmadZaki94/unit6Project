@@ -6,16 +6,17 @@ import {
     Input,
     Checkbox,
     Stack,
-    Link,
     Button,
+    Text,
+    // Link,
     Heading,
     useColorModeValue,
   } from '@chakra-ui/react';
 import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/Context/Auth';
-  
+
 export const Login = () => {
 
     const navigate = useNavigate();
@@ -79,7 +80,7 @@ export const Login = () => {
                   align={'start'}
                   justify={'space-between'}>
                   <Checkbox>Remember me</Checkbox>
-                  <Link color={'blue.400'}>Forgot password?</Link>
+                  {/* <Link color={'blue.400'}>Forgot password?</Link> */}
                 </Stack>
                 <Button
                   bg={'blue.400'}
@@ -96,6 +97,12 @@ export const Login = () => {
                 </Button>
               </Stack>
           </Stack>
+          <Text mt='5px'>
+            If you don't have an account?
+            <Link to='/signup'>
+              <span style={{ color: "#4299e1", marginLeft: '5px'}}>signup Here</span>
+            </Link> 
+          </Text>
         </Box>
       </Stack>
     </Flex>
